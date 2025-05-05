@@ -9,12 +9,13 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.ParseException;
 
 import static com.constants.Constants.*;
-
+import com.utils.Mapper;
 public class main {
     public static void main(String[] args) {
         System.out.println("Hello World");
         acceptInput(args);
         printUserDetails();
+        Mapper.UpdateClientDetails();
     }
 
     public static void acceptInput(String[] args) {
