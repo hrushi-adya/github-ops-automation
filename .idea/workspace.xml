@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="760fc1bf-3393-489c-bca1-bcea19e7cd3e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gitutils/GithubUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/utils/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/utils/POJO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

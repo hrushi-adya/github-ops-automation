@@ -13,4 +13,3 @@ This repository contains a source code to automate GitHub Operations. The primar
 - Java Runtime Environment (JRE) 8 or higher
 - Apache Maven
 - Git Dependencies (Maven)
-
