@@ -14,7 +14,7 @@ public class main {
     public static void main(String[] args) {
         System.out.println("Hello World");
         acceptInput(args);
-        printUserDetails();
+        printClientDetails();
         Mapper.UpdateClientDetails();
     }
 
@@ -33,6 +33,10 @@ public class main {
         organizationOption.setRequired(true);
         options.addOption(organizationOption);
 
+        Option operationOption = new Option("o", "operation", true, "operation to perform");
+        operationOption.setRequired(true);
+        options.addOption(operationOption);
+
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
 
@@ -42,10 +46,21 @@ public class main {
             String id = cmd.getOptionValue("id");
             String name = cmd.getOptionValue("name");
             String organization = cmd.getOptionValue("organization");
+            String operation = cmd.getOptionValue("operation");
 
-            System.setProperty(USER_ID, id);
-            System.setProperty(USER_NAME, name);
-            System.setProperty(USER_ORGANIZATION, organization);
+            System.setProperty(CLIENT_ID, id);
+            System.setProperty(CLIENT_NAME, name);
+            System.setProperty(CLIENT_ORGANIZATION, organization);
+
+            if(operation.equalsIgnoreCase(ADD_CLIENT) ||
+                    operation.equalsIgnoreCase(UPDATE_CLIENT) ||
+                    operation.equalsIgnoreCase(DELETE_CLIENT)) {
+                System.setProperty(OPERATION, operation);
+            } else {
+                System.out.println("Invalid operation. Valid Operations are add, update, delete");
+                formatter.printHelp("invalid operation", options);
+                System.exit(1);
+            }
 
         } catch (ParseException e) {
             System.out.println(e.getMessage());
@@ -54,9 +69,10 @@ public class main {
         }
     }
 
-    public static void printUserDetails() {
-        System.out.println("User ID: " + System.getProperty(USER_ID));
-        System.out.println("User Name: " + System.getProperty(USER_NAME));
-        System.out.println("User Organization: " + System.getProperty(USER_ORGANIZATION));
+    public static void printClientDetails() {
+        System.out.println("User ID: " + System.getProperty(CLIENT_ID));
+        System.out.println("User Name: " + System.getProperty(CLIENT_NAME));
+        System.out.println("User Organization: " + System.getProperty(CLIENT_ORGANIZATION));
+        System.out.println("Operation: " + System.getProperty(OPERATION));
     }
 }
