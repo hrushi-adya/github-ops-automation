@@ -12,8 +12,8 @@ import static com.constants.Constants.*;
 import com.utils.Mapper;
 public class main {
     public static void main(String[] args) {
-        System.out.println("Hello World");
         acceptInput(args);
+        System.out.println("printing client details: ");
         printClientDetails();
         Mapper.UpdateClientDetails();
     }
@@ -33,7 +33,7 @@ public class main {
         organizationOption.setRequired(true);
         options.addOption(organizationOption);
 
-        Option operationOption = new Option("o", "operation", true, "operation to perform");
+        Option operationOption = new Option("op", "operation", true, "operation to perform");
         operationOption.setRequired(true);
         options.addOption(operationOption);
 

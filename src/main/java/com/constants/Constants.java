@@ -5,7 +5,7 @@ public class Constants {
     // Constants for command line arguments
     public static final String CLIENT_ID = "client_id";
     public static final String CLIENT_NAME = "client_name";
-    public static final String CLIENT_ORGANIZATION = "cllient_organization";
+    public static final String CLIENT_ORGANIZATION = "client_organization";
 
     // Operations for clients
     public static final String ADD_CLIENT = "add";
