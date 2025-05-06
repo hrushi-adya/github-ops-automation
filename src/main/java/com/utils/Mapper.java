@@ -2,7 +2,7 @@ package com.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -26,9 +26,9 @@ public class Mapper{
             if (System.getProperty(OPERATION).equalsIgnoreCase(ADD_CLIENT)) {
                 clientData = clientOperations.addUser(objMapper);
             } else if (System.getProperty(OPERATION).equalsIgnoreCase(UPDATE_CLIENT)) {
-                clientOperations.updateClient();
+                clientData = clientOperations.updateClient(objMapper);
             } else if (System.getProperty(OPERATION).equalsIgnoreCase(DELETE_CLIENT)) {
-                clientOperations.deleteClient();
+                clientData = clientOperations.deleteClient(objMapper);
             }
 
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(filePath, clientData);

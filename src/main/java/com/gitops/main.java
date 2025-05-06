@@ -26,11 +26,11 @@ public class main {
         options.addOption(idOption);
 
         Option nameOption = new Option("n", "name", true, "user name");
-        nameOption.setRequired(true);
+        nameOption.setRequired(false);
         options.addOption(nameOption);
 
         Option organizationOption = new Option("o", "organization", true, "user organization");
-        organizationOption.setRequired(true);
+        organizationOption.setRequired(false);
         options.addOption(organizationOption);
 
         Option operationOption = new Option("op", "operation", true, "operation to perform");
@@ -49,8 +49,12 @@ public class main {
             String operation = cmd.getOptionValue("operation");
 
             System.setProperty(CLIENT_ID, id);
-            System.setProperty(CLIENT_NAME, name);
-            System.setProperty(CLIENT_ORGANIZATION, organization);
+            if(name != null) {
+                System.setProperty(CLIENT_NAME, name);
+            }
+            if(organization != null) {
+                System.setProperty(CLIENT_ORGANIZATION, organization);
+            }
 
             if(operation.equalsIgnoreCase(ADD_CLIENT) ||
                     operation.equalsIgnoreCase(UPDATE_CLIENT) ||
