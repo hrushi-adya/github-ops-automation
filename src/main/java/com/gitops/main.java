@@ -8,14 +8,41 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.ParseException;
 
-import static com.constants.Constants.*;
+import org.kohsuke.github.GHContent;
+import org.kohsuke.github.GHRepository;
+import java.util.LinkedHashMap;
+
 import com.utils.Mapper;
+import com.utils.GitHubUtils;
+import static com.constants.Constants.*;
+
 public class main {
     public static void main(String[] args) {
-        acceptInput(args);
-        System.out.println("printing client details: ");
-        printClientDetails();
-        Mapper.UpdateClientDetails();
+        try {
+
+            // Accept Input
+            acceptInput(args);
+            System.out.println("printing client details: ");
+            printClientDetails();
+            // Initiate GitHub Operations
+            GHRepository repo = GitHubUtils.initiateGitHubClient();
+            // Create a new Branch
+            LinkedHashMap<String, Object> branchContentMap = GitHubUtils.createBranch(repo);
+            String json = (String) branchContentMap.get("jsonString");
+            // Update the JSON File
+            String updatedJson = Mapper.UpdateClientDetails(json);
+            GHContent fileContent = (GHContent) branchContentMap.get("fileContent");
+            // Commit the code changes to the new branch
+            GitHubUtils.commitChanges(repo, fileContent, updatedJson);
+            // Create a Pull Request
+            String branchName = System.getProperty(CLIENT_ID) + HYPHEN + System.getProperty(OPERATION) + HYPHEN + REPO_BRANCH;
+            String prTitle = System.getProperty(CLIENT_ID) + HYPHEN + System.getProperty(OPERATION);
+            repo.createPullRequest(prTitle, branchName, REPO_BASE_BRANCH, "Automated PR for JSON Update");
+
+        } catch (Exception e) {
+            System.out.println("Error while running GitOps Automation: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public static void acceptInput(String[] args) {
