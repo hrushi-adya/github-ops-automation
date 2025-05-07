@@ -1,7 +1,6 @@
 # github-ops-automation
 GitHub Operations Automation
 ***
-***
 Output Pull Request: https://github.com/hrushi-adya/github-ops-automation/pull/10
 ***
 ## Overview
